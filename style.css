@@ -1,0 +1,33 @@
+.ItemGroup-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ItemGroup {
+  border: 1px solid #D8D8D8;
+  border-radius: 10px;
+}
+
+.ItemGroup-header {
+  background-color: #F7F7F7;
+  padding: 8px;
+}
+
+.ItemGroup-itemlist > li,
+.ItemGroup-item {
+  padding: 8px;
+  margin: 0;
+  list-style: none;
+}
+
+.ItemGroup-itemlist > li:hover,
+.ItemGroup-item:hover {
+  background-color: #EEF7FF;
+}
+
+.ItemGroup-itemlist {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

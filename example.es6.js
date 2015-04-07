@@ -7,6 +7,8 @@ import random from 'lodash-node/modern/number/random'
 // import SortableItemGroup from '../index.es6'
 
 let ItemGroup = React.createClass({
+  displayName: 'ItemGroup',
+
   getInitialState() {
     return {
       expanded: true
@@ -21,14 +23,40 @@ let ItemGroup = React.createClass({
     let hasExpandedChildren = this.props.children && this.state.expanded
 
     return (
-      <li className="ItemGroup-group">
-        <div>
+      <li className="ItemGroup">
+        <div className="ItemGroup-header">
           <button onClick={this.handleExpandToggle}>▼</button>
           <div className="ItemGroup-title">{this.props.title}</div>
-          {hasExpandedChildren && this.props.children}
         </div>
+        {hasExpandedChildren && this.props.children}
       </li>
     )
+  }
+})
+
+let ModuleItem = React.createClass({
+  handleAcceptTest () {
+    return true
+  },
+
+  handleDrop () {
+    console.log('dropped')
+  },
+
+  render () {
+    return (
+      <SortableItem
+          type={this.props.type}
+          data={this.props.data}
+          key={this.props.id}
+          handleDrop={this.handleDrop}
+          handleAcceptTest={this.handleAcceptTest}>
+        <li className="ItemGroup-item">
+          {this.props.title}
+        </li>
+      </SortableItem>
+    )
+
   }
 })
 
@@ -36,23 +64,26 @@ let modules = range(0, 5).map(() => {
   return {
     id: Math.random(),
     title: loremHipsum({count: random(3, 14), units: 'words'}),
-    items: range(0, 5).map(() => ({
-      id: Math.random(),
-      title: loremHipsum({count: random(3, 14), units: 'words'})
-    }))
+    items: range(0, 5).map(() => {
+      let id = Math.random()
+      return {
+        id,
+        path: `${module}.${id}`,
+        type: 'text/plain',
+        title: loremHipsum({count: random(3, 14), units: 'words'})
+      }
+    })
   }
 }).map((module) => {
   let items = module.items.map((item) => {
     return (
-      <li key={item.id}>
-        {item.title}
-      </li>
+      <ModuleItem key={item.id} {...item} />
     )
   })
 
   return (
     <ItemGroup key={module.id} {...module}>
-      <ol>
+      <ol className="ItemGroup-itemlist">
         {items}
       </ol>
     </ItemGroup>
@@ -63,7 +94,7 @@ function update() {
   React.render(
     <div>
       <h1>react-sortable-item-group</h1>
-      <ol>{modules}</ol>
+      <ol className="ItemGroup-list">{modules}</ol>
     </div>,
     document.getElementById('example')
   )
