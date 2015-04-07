@@ -1,46 +1,26 @@
 import React from 'react'
 import SortableItem from 'react-sortable-item'
 import loremHipsum from 'lorem-hipsum'
-import range from 'lodash-node/modern/utility/range'
 import random from 'lodash-node/modern/number/random'
-// import casual from 'casual'
+import findIndex from 'lodash-node/modern/array/findIndex'
+import range from 'lodash-node/modern/utility/range'
 // import SortableItemGroup from '../index.es6'
 
-let ItemGroup = React.createClass({
-  displayName: 'ItemGroup',
+import ItemGroup from './item-group.es6'
 
-  getInitialState() {
-    return {
-      expanded: true
-    }
-  },
-
-  handleExpandToggle() {
-    this.setState({expanded: !this.state.expanded})
-  },
-
-  render() {
-    let hasExpandedChildren = this.props.children && this.state.expanded
-
-    return (
-      <li className="ItemGroup">
-        <div className="ItemGroup-header">
-          <button onClick={this.handleExpandToggle}>▼</button>
-          <div className="ItemGroup-title">{this.props.title}</div>
-        </div>
-        {hasExpandedChildren && this.props.children}
-      </li>
-    )
-  }
-})
+Array.prototype.move = function(from, to) {
+  this.splice(to, 0, this.splice(from, 1)[0])
+}
 
 let ModuleItem = React.createClass({
   handleAcceptTest () {
     return true
   },
 
-  handleDrop () {
+  handleDrop (event) {
     console.log('dropped')
+    var data = event.dataTransfer.getData('text/plain')
+    //var origin = findIndex(modules, module => data === module.path)
   },
 
   render () {
