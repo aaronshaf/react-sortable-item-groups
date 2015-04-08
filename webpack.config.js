@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    'example': './example.es6'
+    'example/example': './example/index.es6'
   },
 
   output: {

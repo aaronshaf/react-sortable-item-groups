@@ -69,6 +69,8 @@ input::-moz-focus-inner {
 
 .ItemGroup-itemlist > li,
 .ItemGroup-item {
+  cursor: -webkit-grab;
+  cursor: grab;
   background-color: white;
   padding: 12px;
   margin: 0;
@@ -79,19 +81,18 @@ input::-moz-focus-inner {
   text-transform: capitalize; /* temporary */
 }
 
+.ItemGroup-itemlist > li:active {
+  cursor: grabbing;
+}
+
 .ItemGroup-itemlist > li.hover.hover-above {
-  border-top: 1px solid red;
+  border-top: 1px solid blue;
 }
 
 .ItemGroup-itemlist > li.hover.hover-below {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid blue;
 }
 
 .ItemGroup-itemlist > li.hover.hover-below + li {
-  border-top: 1px solid red;
-}
-
-.ItemGroup-itemlist > li:hover,
-.ItemGroup-item:hover {
-  background-color: #EEF7FF;
+  border-top: 1px solid blue;
 }

@@ -1,12 +1,17 @@
 import React from 'react'
-import SortableItem from 'react-sortable-item'
 import loremHipsum from 'lorem-hipsum'
+
+// utilities
 import random from 'lodash-node/modern/number/random'
 import findIndex from 'lodash-node/modern/array/findIndex'
 import range from 'lodash-node/modern/utility/range'
+import flatten from 'lodash-node/modern/array/flatten'
+
 // import SortableItemGroup from '../index.es6'
 
-import ItemGroup from './item-group.es6'
+// components
+import SortableItem from 'react-sortable-item'
+import ItemGroup from '../index.es6'
 
 Array.prototype.move = function(from, to) {
   this.splice(to, 0, this.splice(from, 1)[0])
@@ -96,3 +101,4 @@ function update() {
   )
 }
 update()
+
