@@ -69,6 +69,7 @@ input::-moz-focus-inner {
 
 .ItemGroup-itemlist > li,
 .ItemGroup-item {
+  background-color: white;
   padding: 12px;
   margin: 0;
   list-style: none;

@@ -12,22 +12,48 @@ Array.prototype.move = function(from, to) {
   this.splice(to, 0, this.splice(from, 1)[0])
 }
 
+let modules = range(0, 5).map(() => {
+  return {
+    id: Math.random(),
+    title: loremHipsum({count: random(3, 14), units: 'words'}),
+    items: range(0, 5).map(() => {
+      let id = Math.random()
+      return {
+        id,
+        path: `item.${id}`,
+        type: 'text/plain',
+        title: loremHipsum({count: random(3, 14), units: 'words'})
+      }
+    })
+  }
+})
+
 let ModuleItem = React.createClass({
   handleAcceptTest () {
     return true
   },
 
-  handleDrop (event) {
-    console.log(arguments)
-    // var data = event.dataTransfer.getData('text/plain')
-    //var origin = findIndex(modules, module => data === module.path)
+  handleDrop (dropPath, position, event) {
+    // Mutating props and then doing forceUpdate is bad and temporary
+    let items = this.props.items
+
+    const data = event.dataTransfer.getData('text/plain')
+    const origin = findIndex(items, item => data === item.path)
+    const destination = findIndex(items, item => dropPath === item.path)
+    if(destination > origin) {
+      items.move(origin, destination + position - 1)
+    } else {
+      items.move(origin, destination + position)
+    }
+    update()
+    this.forceUpdate()
   },
 
   render () {
     return (
       <SortableItem
           type={this.props.type}
-          data={this.props.data}
+          data={this.props.path}
           key={this.props.id}
           handleDrop={this.handleDrop}
           handleAcceptTest={this.handleAcceptTest}>
@@ -40,27 +66,11 @@ let ModuleItem = React.createClass({
   }
 })
 
-let modules = range(0, 5).map(() => {
-  return {
-    id: Math.random(),
-    title: loremHipsum({count: random(3, 14), units: 'words'}),
-    items: range(0, 5).map(() => {
-      let id = Math.random()
-      return {
-        id,
-        path: `${module}.${id}`,
-        type: 'text/plain',
-        title: loremHipsum({count: random(3, 14), units: 'words'})
-      }
-    })
-  }
-})
-
 class Module extends React.Component {
   render () {
     let items = this.props.items.map((item) => {
       return (
-        <ModuleItem key={item.id} {...item} />
+        <ModuleItem key={item.id} {...item} items={this.props.items} />
       )
     })
 

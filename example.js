@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	'use strict';
 
 	var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
 
@@ -90,6 +90,22 @@
 	  this.splice(to, 0, this.splice(from, 1)[0]);
 	};
 
+	var modules = _range2['default'](0, 5).map(function () {
+	  return {
+	    id: Math.random(),
+	    title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' }),
+	    items: _range2['default'](0, 5).map(function () {
+	      var id = Math.random();
+	      return {
+	        id: id,
+	        path: 'item.' + id,
+	        type: 'text/plain',
+	        title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' })
+	      };
+	    })
+	  };
+	});
+
 	var ModuleItem = _React2['default'].createClass({
 	  displayName: 'ModuleItem',
 
@@ -97,8 +113,24 @@
 	    return true;
 	  },
 
-	  handleDrop: function handleDrop(event) {
-	    console.log(arguments);
+	  handleDrop: function handleDrop(dropPath, position, event) {
+	    // Mutating props and then doing forceUpdate is bad and temporary
+	    var items = this.props.items;
+
+	    var data = event.dataTransfer.getData('text/plain');
+	    var origin = _findIndex2['default'](items, function (item) {
+	      return data === item.path;
+	    });
+	    var destination = _findIndex2['default'](items, function (item) {
+	      return dropPath === item.path;
+	    });
+	    if (destination > origin) {
+	      items.move(origin, destination + position - 1);
+	    } else {
+	      items.move(origin, destination + position);
+	    }
+	    update();
+	    this.forceUpdate();
 	  },
 
 	  render: function render() {
@@ -106,7 +138,7 @@
 	      _SortableItem2['default'],
 	      {
 	        type: this.props.type,
-	        data: this.props.data,
+	        data: this.props.path,
 	        key: this.props.id,
 	        handleDrop: this.handleDrop,
 	        handleAcceptTest: this.handleAcceptTest },
@@ -117,22 +149,6 @@
 	      )
 	    );
 	  }
-	});
-
-	var modules = _range2['default'](0, 5).map(function () {
-	  return {
-	    id: Math.random(),
-	    title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' }),
-	    items: _range2['default'](0, 5).map(function () {
-	      var id = Math.random();
-	      return {
-	        id: id,
-	        path: '' + module + '.' + id,
-	        type: 'text/plain',
-	        title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' })
-	      };
-	    })
-	  };
 	});
 
 	var Module = (function (_React$Component) {
@@ -149,8 +165,10 @@
 	  _createClass(Module, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this = this;
+
 	      var items = this.props.items.map(function (item) {
-	        return _React2['default'].createElement(ModuleItem, _extends({ key: item.id }, item));
+	        return _React2['default'].createElement(ModuleItem, _extends({ key: item.id }, item, { items: _this.props.items }));
 	      });
 
 	      return _React2['default'].createElement(
@@ -185,9 +203,6 @@
 	  ), document.getElementById('example'));
 	}
 	update();
-	// var data = event.dataTransfer.getData('text/plain')
-	//var origin = findIndex(modules, module => data === module.path)
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
 /***/ },
 /* 1 */
@@ -263,22 +278,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
-
-/***/ },
+/* 2 */,
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
