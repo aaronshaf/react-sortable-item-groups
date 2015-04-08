@@ -18,8 +18,8 @@ let ModuleItem = React.createClass({
   },
 
   handleDrop (event) {
-    console.log('dropped')
-    var data = event.dataTransfer.getData('text/plain')
+    console.log(arguments)
+    // var data = event.dataTransfer.getData('text/plain')
     //var origin = findIndex(modules, module => data === module.path)
   },
 
@@ -54,27 +54,33 @@ let modules = range(0, 5).map(() => {
       }
     })
   }
-}).map((module) => {
-  let items = module.items.map((item) => {
-    return (
-      <ModuleItem key={item.id} {...item} />
-    )
-  })
-
-  return (
-    <ItemGroup key={module.id} {...module}>
-      <ol className="ItemGroup-itemlist">
-        {items}
-      </ol>
-    </ItemGroup>
-  )
 })
 
+class Module extends React.Component {
+  render () {
+    let items = this.props.items.map((item) => {
+      return (
+        <ModuleItem key={item.id} {...item} />
+      )
+    })
+
+    return (
+      <ItemGroup key={this.props.id} {...this.props}>
+        {items}
+      </ItemGroup>
+    )
+  }
+}
+
 function update() {
+  let moduleComponents = modules.map((module) => (
+    <Module title="Test" key={module.id} {...module} />
+  ))
+
   React.render(
     <div>
       <h1>react-sortable-item-group</h1>
-      <ol className="ItemGroup-list">{modules}</ol>
+      <ol className="ItemGroup-list">{moduleComponents}</ol>
     </div>,
     document.getElementById('example')
   )

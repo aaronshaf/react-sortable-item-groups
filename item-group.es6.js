@@ -1,4 +1,5 @@
 import React from 'react'
+import classSet from 'class-set'
 
 const ItemGroup = React.createClass({
   displayName: 'ItemGroup',
@@ -15,14 +16,22 @@ const ItemGroup = React.createClass({
 
   render() {
     const hasExpandedChildren = this.props.children && this.state.expanded
+    const classes = classSet('ItemGroup', {
+      'ItemGroup--expanded': this.state.expanded,
+      'ItemGroup--collapsed': !this.state.expanded
+    })
 
     return (
-      <li className="ItemGroup">
+      <li className={classes}>
         <div className="ItemGroup-header">
-          <button onClick={this.handleExpandToggle}>▼</button>
-          <div className="ItemGroup-title">{this.props.title}</div>
+          <button className="ItemGroup__expand-button" onClick={this.handleExpandToggle}>
+            <span className="ItemGroup__expand-arrow">▼</span>
+          </button>
+          <div className="ItemGroup-title">{this.props.title || 'Empty'}</div>
         </div>
-        {hasExpandedChildren && this.props.children}
+        <ol className="ItemGroup-itemlist">
+          {hasExpandedChildren && this.props.children}
+        </ol>
       </li>
     )
   }

@@ -1,17 +1,67 @@
+.ItemGroup {
+  border: 1px solid #D8D8D8;
+  border-radius: 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
 .ItemGroup-list {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.ItemGroup {
-  border: 1px solid #D8D8D8;
-  border-radius: 10px;
-}
-
 .ItemGroup-header {
   background-color: #F7F7F7;
-  padding: 8px;
+  padding: 12px;
+}
+
+.ItemGroup__expand-button {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  margin-right: 8px;
+}
+
+.ItemGroup-title {
+  display: inline-block;
+  font-size: 1.03rem;
+}
+
+.ItemGroup__expand-button:active {
+  padding: 0;
+}
+
+.ItemGroup__expand-arrow {
+  display: inline-block;
+  border: 0;
+  padding: 0;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+}
+
+.ItemGroup--expanded .ItemGroup__expand-arrow {
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+.ItemGroup--collapsed .ItemGroup__expand-arrow {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+.ItemGroup-itemlist {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .ItemGroup-itemlist > li,
@@ -24,10 +74,4 @@
 .ItemGroup-itemlist > li:hover,
 .ItemGroup-item:hover {
   background-color: #EEF7FF;
-}
-
-.ItemGroup-itemlist {
-  padding: 0;
-  margin: 0;
-  list-style: none;
 }
