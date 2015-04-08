@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel index.es6.js --out-file index.js",
+    "build": "babel group.es6.js --out-file group.js && babel item.es6.js --out-file item.js",
     "dev": "webpack --watch"
   },
   "repository": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aaronshaf/sortable-item-groups",
   "devDependencies": {
+    "axios": "^0.5.4",
     "babel": "^5.0.8",
     "babel-core": "^5.0.8",
     "babel-loader": "^5.0.0",
@@ -34,7 +35,12 @@
     "mocha": "^2.2.1",
     "react": "^0.13.1",
     "react-sortable-item": "1.0.1",
+    "uniflow": "^1.0.1",
     "webpack": "^1.7.3",
-    "webpack-dev-server": "^1.8.0"
+    "webpack-dev-server": "^1.8.0",
+    "xhr-interceptor": "^1.2.1"
+  },
+  "dependencies": {
+    "uniflow-component": "^1.0.0"
   }
 }

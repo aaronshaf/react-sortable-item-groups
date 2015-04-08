@@ -86,13 +86,13 @@ input::-moz-focus-inner {
 }
 
 .ItemGroup-itemlist > li.hover.hover-above {
-  border-top: 1px solid blue;
+  border-top: 1px solid black;
 }
 
 .ItemGroup-itemlist > li.hover.hover-below {
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid black;
 }
 
 .ItemGroup-itemlist > li.hover.hover-below + li {
-  border-top: 1px solid blue;
+  border-top: 1px solid black;
 }

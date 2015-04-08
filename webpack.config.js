@@ -1,6 +1,9 @@
 module.exports = {
   entry: {
-    'example/example': './example/index.es6'
+    'example/index': [
+      'babel/polyfill',
+      './example/index.es6'
+    ]
   },
 
   output: {
