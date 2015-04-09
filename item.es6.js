@@ -1,5 +1,6 @@
 import React from 'react'
 import SortableItem from 'react-sortable-item'
+import DragHandle from './drag-handle.es6'
 // import classSet from 'class-set'
 
 const ItemGroupItem = React.createClass({
@@ -13,7 +14,10 @@ const ItemGroupItem = React.createClass({
           handleDrop={this.props.handleDrop}
           handleAcceptTest={this.props.handleAcceptTest}>
         <li className="ItemGroup-item">
-          {this.props.children}
+          <DragHandle />
+          <div className="ItemGroup-item-content">
+            {this.props.children}
+          </div>
         </li>
       </SortableItem>
     )

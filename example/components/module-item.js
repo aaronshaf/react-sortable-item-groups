@@ -15,7 +15,6 @@ let ModuleItem = React.createClass({
   handleDrop (dropTarget, position, event) {
     // Mutating props and then doing forceUpdate is bad and temporary
     let items = this.props.items
-    console.log('handleDrop')
     ModuleItemActions.drop(dropTarget, position, event)
   },
 
@@ -27,7 +26,26 @@ let ModuleItem = React.createClass({
           key={this.props.id}
           handleDrop={this.handleDrop}
           handleAcceptTest={this.handleAcceptTest}>
-        {this.props.title}
+        <div className="ModuleItem">
+          <div className="ModuleItem__title">
+            {this.props.title}
+          </div>
+          <div className="ModuleItem__availability">
+          [available]
+          </div>
+          <div className="ModuleItem__due-date">
+            [due]
+          </div>
+          <div className="ModuleItem__points">
+          {this.props.points ? `${this.props.points} pts` : ''}
+          </div>
+          <div className="ModuleItem__published">
+            [published]
+          </div>
+          <div className="ModuleItem__admin">
+            [gear]
+          </div>
+        </div>
       </Item>
     )
   }

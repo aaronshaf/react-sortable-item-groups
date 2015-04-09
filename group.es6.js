@@ -1,4 +1,5 @@
 import React from 'react'
+import ArrowDown from './arrow-down.es6'
 import classSet from 'class-set'
 
 const ItemGroup = React.createClass({
@@ -25,7 +26,9 @@ const ItemGroup = React.createClass({
       <li className={classes}>
         <div className="ItemGroup-header">
           <button className="ItemGroup__expand-button" onClick={this.handleExpandToggle}>
-            <span className="ItemGroup__expand-arrow">▼</span>
+            <span className="ItemGroup__expand-arrow">
+              <ArrowDown />
+            </span>
           </button>
           <div className="ItemGroup-title">{this.props.title || 'Empty'}</div>
         </div>

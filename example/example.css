@@ -1,0 +1,30 @@
+.ModuleItem {
+  width: 100%;
+  display: flex;
+  vertical-align: middle;
+  padding: 4px;
+  align-items: center;
+}
+
+.ModuleItem__title {
+  flex: 8;
+}
+
+.ModuleItem__due-date {
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.ModuleItem__availability {
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.ModuleItem__points {
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.ModuleItem__published {}
+
+.ModuleItem__admin {}
