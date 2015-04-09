@@ -26,7 +26,7 @@ class Modules extends React.Component {
       )
     })
 
-    return <ol>{moduleComponents}</ol>
+    return <Groups>{moduleComponents}</Groups>
   }
 }
 

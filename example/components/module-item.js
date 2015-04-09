@@ -23,7 +23,7 @@ let ModuleItem = React.createClass({
     return (
       <Item
           type={this.props.type}
-          data={this.props.path}
+          data={this.props.href}
           key={this.props.id}
           handleDrop={this.handleDrop}
           handleAcceptTest={this.handleAcceptTest}>

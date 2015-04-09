@@ -1,13 +1,13 @@
 import Uniflow from 'uniflow'
 
 var ModuleItemActions = Uniflow.createActions({
-  drop(dropTarget, position, event) {
-    const itemDropped = event.dataTransfer.getData('text/plain')
+  drop(dropTargetHref, position, event) {
+    const itemDroppedHref = event.dataTransfer.getData('text/plain')
     console.log({dropTarget, position, event, itemDropped})
 
     /*
-    const origin = findIndex(items, item => data === item.path)
-    const destination = findIndex(items, item => dropPath === item.path)
+    const origin = findIndex(items, item => data === item.href)
+    const destination = findIndex(items, item => dropTargetHref === item.href)
 
     if(destination > origin) {
       items.move(origin, destination + position - 1)
@@ -15,6 +15,14 @@ var ModuleItemActions = Uniflow.createActions({
       items.move(origin, destination + position)
     }
     */
+
+    if(1 /* Is the dropped item from this page? */) {
+      // remove it from its list
+
+      // move it to destination
+    }
+
+    // Is the dropped item from elsewhere?
   }
 })
 

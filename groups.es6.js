@@ -5,9 +5,9 @@ const Groups = React.createClass({
 
   render() {
     return (
-      <li className="ItemGroup-item">
+      <ol className="ItemGroup-list">
         {this.props.children}
-      </li>
+      </ol>
     )
   }
 })

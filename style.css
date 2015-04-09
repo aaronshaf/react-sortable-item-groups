@@ -67,6 +67,7 @@ input::-moz-focus-inner {
   list-style: none;
 }
 
+/* temporarily using cascade here until cloneElement better implemented */
 .ItemGroup-itemlist > li,
 .ItemGroup-item {
   cursor: -webkit-grab;

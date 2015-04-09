@@ -123,15 +123,18 @@
 	app.get('/api/v1/courses/:course_id/modules', function (req, res) {
 	  // TODO: check for include[]=items,content_details
 
+	  var courseId = 1;
+
 	  var modules = _range2['default'](0, 5).map(function () {
+	    var moduleId = Math.random();
 	    return {
-	      id: Math.random(),
+	      id: moduleId,
 	      title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' }),
 	      items: _range2['default'](0, 5).map(function () {
-	        var id = Math.random();
+	        var itemId = Math.random();
 	        return {
-	          id: id,
-	          path: 'item.' + id,
+	          id: itemId,
+	          href: 'https://myschool.instructure.com/courses/' + courseId + '/modules/' + moduleId + '/items/' + itemId,
 	          type: 'text/plain',
 	          title: _loremHipsum2['default']({ count: _random2['default'](3, 14), units: 'words' })
 	        };
@@ -280,7 +283,7 @@
 	      });
 
 	      return _React2['default'].createElement(
-	        'ol',
+	        _Groups2['default'],
 	        null,
 	        moduleComponents
 	      );
@@ -361,8 +364,8 @@
 
 	  render: function render() {
 	    return _React2['default'].createElement(
-	      'li',
-	      { className: 'ItemGroup-item' },
+	      'ol',
+	      { className: 'ItemGroup-list' },
 	      this.props.children
 	    );
 	  }
@@ -1420,7 +1423,7 @@
 	      _Item2['default'],
 	      {
 	        type: this.props.type,
-	        data: this.props.path,
+	        data: this.props.href,
 	        key: this.props.id,
 	        handleDrop: this.handleDrop,
 	        handleAcceptTest: this.handleAcceptTest },
@@ -7287,23 +7290,32 @@
 	var _Uniflow2 = _interopRequireWildcard(_Uniflow);
 
 	var ModuleItemActions = _Uniflow2['default'].createActions({
-	  drop: function drop(dropTarget, position, event) {
-	    var itemDropped = event.dataTransfer.getData('text/plain');
+	  drop: function drop(dropTargetHref, position, event) {
+	    var itemDroppedHref = event.dataTransfer.getData('text/plain');
 	    console.log({ dropTarget: dropTarget, position: position, event: event, itemDropped: itemDropped });
+
+	    /*
+	    const origin = findIndex(items, item => data === item.href)
+	    const destination = findIndex(items, item => dropTargetHref === item.href)
+	     if(destination > origin) {
+	      items.move(origin, destination + position - 1)
+	    } else {
+	      items.move(origin, destination + position)
+	    }
+	    */
+
+	    if (1 /* Is the dropped item from this page? */) {}
+
+	    // Is the dropped item from elsewhere?
 	  }
 	});
 
 	exports['default'] = ModuleItemActions;
 	module.exports = exports['default'];
-	/*
-	const origin = findIndex(items, item => data === item.path)
-	const destination = findIndex(items, item => dropPath === item.path)
-	 if(destination > origin) {
-	  items.move(origin, destination + position - 1)
-	} else {
-	  items.move(origin, destination + position)
-	}
-	*/
+
+	// remove it from its list
+
+	// move it to destination
 
 /***/ },
 /* 57 */
