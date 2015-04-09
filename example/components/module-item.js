@@ -31,10 +31,10 @@ let ModuleItem = React.createClass({
             {this.props.title}
           </div>
           <div className="ModuleItem__availability">
-          [available]
+            {this.props.availabilityDate}
           </div>
           <div className="ModuleItem__due-date">
-            [due]
+            {this.props.dueDate}
           </div>
           <div className="ModuleItem__points">
           {this.props.points ? `${this.props.points} pts` : ''}
