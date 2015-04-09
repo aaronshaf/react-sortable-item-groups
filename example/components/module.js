@@ -4,15 +4,17 @@ import ModuleItem from './module-item'
 
 class Module extends React.Component {
   render () {
-    let items = this.props.items.map((item) => {
+    let items = this.props.items
+
+    let itemComponents = items.map((item) => {
       return (
-        <ModuleItem key={item.id} {...item} items={this.props.items} />
+        <ModuleItem key={item.id} {...item} items={items} />
       )
     })
 
     return (
       <Group key={this.props.id} {...this.props}>
-        {items}
+        {itemComponents}
       </Group>
     )
   }

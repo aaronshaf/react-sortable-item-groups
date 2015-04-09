@@ -17,13 +17,16 @@ class SubscribedModules extends React.Component {
 
 class Modules extends React.Component {
   render () {
-    return <div>[Modules]</div>
+    if(!this.props.storeState.modules.length) {
+      return <div>Loading</div>
+    }
+    let moduleComponents = this.props.storeState.modules.map((module) => {
+      return (
+        <Module key={module.id} {...module} />
+      )
+    })
 
-    const moduleComponents = this.props.storeState.modules.map((module) => (
-      <Module key={module.id} {...module} />
-    ))
-
-    return moduleComponents
+    return <ol>{moduleComponents}</ol>
   }
 }
 

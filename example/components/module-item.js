@@ -1,4 +1,5 @@
 import React from 'react'
+import ModuleItemActions from '../actions/module-item'
 import Item from '../../item.es6'
 import findIndex from 'lodash-node/modern/array/findIndex'
 
@@ -11,20 +12,11 @@ let ModuleItem = React.createClass({
     return true
   },
 
-  handleDrop (dropPath, position, event) {
+  handleDrop (dropTarget, position, event) {
     // Mutating props and then doing forceUpdate is bad and temporary
     let items = this.props.items
-
-    const data = event.dataTransfer.getData('text/plain')
-    const origin = findIndex(items, item => data === item.path)
-    const destination = findIndex(items, item => dropPath === item.path)
-    if(destination > origin) {
-      items.move(origin, destination + position - 1)
-    } else {
-      items.move(origin, destination + position)
-    }
-    update()
-    this.forceUpdate()
+    console.log('handleDrop')
+    ModuleItemActions.drop(dropTarget, position, event)
   },
 
   render () {
@@ -40,3 +32,5 @@ let ModuleItem = React.createClass({
     )
   }
 })
+
+export default ModuleItem
