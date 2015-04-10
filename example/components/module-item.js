@@ -44,13 +44,13 @@ let ModuleItem = React.createClass({
   },
 
   render () {
-    const moduleItemClasses = classSet('ModuleItem', {
+    const itemClasses = classSet({
       'ModuleItem--dragging': this.state.dragging
     })
 
     return (
       <Item
-          className="test"
+          className={itemClasses}
           type={this.props.type}
           data={this.props.href}
           key={this.props.id}
@@ -58,7 +58,7 @@ let ModuleItem = React.createClass({
           handleDragStart={this.handleDragStart}
           handleDragEnd={this.handleDragEnd}
           handleAcceptTest={this.handleAcceptTest}>
-        <div className={moduleItemClasses}>
+        <div className="ModuleItem">
           <div className='ModuleItem__title'>
             {this.props.title}
           </div>

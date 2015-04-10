@@ -29,9 +29,7 @@
 }
 
 .ModuleItem--dragging {
-  opacity: 0.1;
-  -webkit-transition: opacity 0.1s;
-  transition: opacity 0.1s;
+  opacity: 0;
 }
 
 .ModuleItem__title {
