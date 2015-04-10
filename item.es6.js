@@ -12,6 +12,8 @@ const ItemGroupItem = React.createClass({
           type={this.props.type}
           data={this.props.data}
           handleDrop={this.props.handleDrop}
+          handleDragStart={this.props.handleDragStart}
+          handleDragEnd={this.props.handleDragEnd}
           handleAcceptTest={this.props.handleAcceptTest}>
         <li className="ItemGroup-item">
           <DragHandle />

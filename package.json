@@ -35,7 +35,7 @@
     "mocha": "^2.2.1",
     "moment": "^2.10.2",
     "react": "^0.13.1",
-    "react-sortable-item": "1.0.1",
+    "react-sortable-item": "^1.1.1",
     "uniflow": "^1.0.1",
     "webpack": "^1.7.3",
     "webpack-dev-server": "^1.8.0",

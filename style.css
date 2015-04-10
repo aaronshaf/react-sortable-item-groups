@@ -4,6 +4,7 @@
   border-top-right-radius: 10px;
   margin-top: 12px;
   margin-bottom: 12px;
+  overflow: hidden;
 }
 
 .ItemGroup-list {
@@ -15,6 +16,8 @@
 .ItemGroup-header {
   background-color: #F7F7F7;
   text-transform: capitalize; /* temporary */
+  display: flex;
+  align-items: center;
 }
 
 .ItemGroup-draghandle {
@@ -38,8 +41,6 @@
   background-color: transparent;
   margin: 0;
   padding: 0;
-  margin-left: 2px;
-  margin-right: 6px;
   height: 42px;
 }
 
@@ -73,6 +74,7 @@
   font-size: 1.03rem;
   margin-top: 8px;
   margin-bottom: 8px;
+  flex: 1;
 }
 
 .ItemGroup-itemlist {

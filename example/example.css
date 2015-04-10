@@ -1,9 +1,37 @@
+.ReactPublishButton {
+  display: inline-block;
+}
+
+.test {
+  background-color: red;
+}
+
+.ReactPublishButton__svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ReactSettingsButton {
+  display: inline-block;
+}
+
+.ReactSettingsButton-svg {
+  width: 20px;
+  height: 20px;
+}
+
 .ModuleItem {
   width: 100%;
   display: flex;
   vertical-align: middle;
   padding: 4px;
   align-items: center;
+}
+
+.ModuleItem--dragging {
+  opacity: 0.1;
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
 }
 
 .ModuleItem__title {
@@ -26,6 +54,10 @@
   flex: 1;
 }
 
-.ModuleItem__published {}
+.ModuleItem__published {
+  width: 32px;
+}
 
-.ModuleItem__admin {}
+.ModuleItem__admin {
+  width: 32px;
+}
