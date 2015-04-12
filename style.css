@@ -16,7 +16,11 @@
 .ItemGroup-header {
   background-color: #F7F7F7;
   text-transform: capitalize; /* temporary */
+  display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -74,7 +78,7 @@
   font-size: 1.03rem;
   margin-top: 8px;
   margin-bottom: 8px;
-  flex: 1;
+  -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; -ms-flex: 1; -webkit-flex: 1; flex: 1;
 }
 
 .ItemGroup-itemlist {
@@ -86,6 +90,7 @@
 /* temporarily using cascade here until cloneElement better implemented */
 .ItemGroup-itemlist > li,
 .ItemGroup-item {
+  display: -webkit-flex;
   display: flex;
   cursor: -webkit-grab;
   cursor: grab;
@@ -115,6 +120,7 @@
 }
 
 .ItemGroup-item-content {
-  flex: 1;
+  -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; -ms-flex: 1; -webkit-flex: 1; flex: 1;
+  display: -webkit-flex;
   display: flex;
 }

@@ -2,9 +2,9 @@ import React from 'react'
 import ModuleItemActions from '../actions/module-item'
 import Item from '../../item.es6'
 import findIndex from 'lodash-node/modern/array/findIndex'
-import PublishButton from './publish-button'
 import SettingsButton from './settings-button'
 import classSet from 'class-set'
+import PublishToggle from 'react-publish-toggle'
 
 Array.prototype.move = function(from, to) {
   this.splice(to, 0, this.splice(from, 1)[0])
@@ -13,7 +13,8 @@ Array.prototype.move = function(from, to) {
 let ModuleItem = React.createClass({
   getInitialState () {
     return {
-      dragging: false
+      dragging: false,
+      published: false
     }
   },
 
@@ -41,6 +42,10 @@ let ModuleItem = React.createClass({
         dragging: false
       })
     }, 20)
+  },
+
+  handlePublishChange () {
+    this.setState({published: !this.state.published})
   },
 
   render () {
@@ -72,7 +77,9 @@ let ModuleItem = React.createClass({
           {this.props.points ? `${this.props.points} pts` : ''}
           </div>
           <div className='ModuleItem__published'>
-            <PublishButton />
+            <PublishToggle
+              published={this.state.published}
+              onChange={this.handlePublishChange} />
           </div>
           <div className='ModuleItem__admin'>
             <SettingsButton />
